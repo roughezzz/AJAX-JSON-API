@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>4</title>
+  </head>
+  <body>
+    
+    <!-- JS -->
+    <script>
+      var xhr = new XMLHttpRequest();
+      
+      xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4 && xhr.status === 200){
+          let temp = JSON.parse(xhr.responseText);
+          console.log(temp.data);
+          
+        }
+      }
+
+      xhr.onprogress = function(){
+        console.log('loading');
+      }
+
+      xhr.onload = function() {
+        console.log('done');
+        
+      }
+
+      xhr.open('GET', 'https://api.myjson.com/bins/8qdqo');
+      xhr.send();
+    </script>
+  </body>
+</html>

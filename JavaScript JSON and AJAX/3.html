@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>3</title>
+  </head>
+  <body>
+    <div id="output1"></div>
+    <div id="output2"></div>
+    <div id="output3"></div>
+    <div id="output4"></div>
+
+    <!-- JS -->
+    <script>
+      const myCar = {
+        color: "Red",
+        brand: "Toyota",
+        model: "Corolla",
+        year: 2016,
+        show: function() {
+          const output1 = document.getElementById('output1');
+          const output2 = document.getElementById('output2');
+          const output3 = document.getElementById('output3');
+          const output4 = document.getElementById('output4');
+          
+          output1.textContent = `Color : ${this.color}`;
+          output2.textContent = `Brand : ${this.brand}`;
+          output3.textContent = `Model : ${this.model}`;
+          output4.textContent = `Year : ${this.year}`;
+        }
+      };
+
+      myCar.show();
+    </script>
+  </body>
+</html>

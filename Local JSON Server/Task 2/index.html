@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JSON API</title>
+  </head>
+  <body>
+    Name : <input type="text" name="name" placeholder="Name" /> <br />
+    Email : <input type="email" name="email" placeholder="email" /> <br />
+    <button class="adder">Add</button>
+    <button class="lister">Lister</button>
+    <div class="message"></div>
+
+    <script>
+      const btn = document.querySelector(".adder");
+      const lister = document.querySelector(".lister");
+      const name = document.querySelector("input[name=name]");
+      const email = document.querySelector("input[name=email]");
+      const message = document.querySelector(".message");
+      btn.addEventListener("click", adder);
+      lister.addEventListener("click", getter);
+
+      function getter() {
+        fetch("http//localhost:3001/person")
+        .then(function(respond){
+            return respond.json()
+        })
+        .then(function(data){
+            console.log(data);
+            output(data);
+        })
+      }
+
+      function output(data) {
+        message.innerHTML="";
+        data.forEach(function(element) {
+          console.log(element);
+          message.innerHTML += `${element.name}`;
+        });
+      }
+
+      function adder() {
+        fetch("http//localhost:3001/person", {
+          method: "POST",
+          body: JSON.stringify({
+            name: name.value,
+            email: email.value
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+          .then(function(respond) {
+            return respond.text();
+          })
+          .then(function(data) {
+            console.log(data);
+          });
+      }
+    </script>
+  </body>
+</html>

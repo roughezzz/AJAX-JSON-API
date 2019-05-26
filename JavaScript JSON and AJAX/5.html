@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>4</title>
+  </head>
+  <body>
+
+    <div class="output"></div>
+    
+    <!-- JS -->
+    <script>
+      const output = document.querySelector('.output');
+      var xhr = new XMLHttpRequest();
+      
+      xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4 && xhr.status === 200){
+          let temp = JSON.parse(xhr.responseText);
+          console.log(temp);
+          for(let i = 0 ; i < temp.data.length ; i++){
+            console.log(temp.data[i]);
+            let person = temp.data[i];
+            output.innerHTML += `${person.first_name} ${person.last_name} <img src="${person.avatar}"><br>`
+            
+          }
+        }
+      }
+
+      xhr.onprogress = function(){
+        console.log('loading');
+      }
+
+      xhr.onload = function() {
+        console.log('done');
+        
+      }
+
+      xhr.open('GET', 'https://api.myjson.com/bins/8qdqo');
+      xhr.send();
+    </script>
+  </body>
+</html>
